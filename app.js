@@ -1,5 +1,6 @@
 //Arquivo principal
 //A API Swapi já está instalada
+//Também está instalado o axios - https://www.npmjs.com/package/axios
 //Carregando módulos    
     const express = require('express')
     const handlebars  = require('express-handlebars')
@@ -32,6 +33,12 @@
     
     //Public
         app.use(express.static(path.join(__dirname,'public')))
+    
+    //Swapi
+        swapi.get('https://swapi.co/api/planets/2').then((result) => {
+            console.log(result);
+        })
+        //https://swapi.co/api/people/?search=r2
 
 //Rotas
     app.use('/admin', admin)
