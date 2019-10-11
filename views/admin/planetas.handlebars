@@ -1,0 +1,17 @@
+<!--Listagem de planetas -->
+<h2>Lista de planetas</h2>
+<hr>
+
+{{#each planetas}}
+    <div class="card">
+        <div class="card-body">
+            <h4>{{nome}}</h4>
+            <small>Clima: {{clima}}</small>
+            <br>
+            <small>Terreno: {{terreno}}</small>
+        </div>
+    </div>
+
+{{else}}
+
+{{/each}}

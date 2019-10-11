@@ -6,13 +6,34 @@
     const handlebars  = require('express-handlebars')
     const  bodyParser = require('body-parser')
     const mongoose = require('mongoose')
+
     const swapi = require('swapi-node')
+    const axios = require('axios')
 
     const app = express()
     const admin = require('./routes/admin')
     const path = require('path')
 
+    //Ferramentas para ajudar na validação
+    const session = require("express-session")
+    const flash = require("connect-flash")
+
 //Configurações
+
+    //Sessão
+        app.use(session({
+            secret: "joao",
+            resave: true,
+            saveUninitialized: true
+        }))
+        app.use(flash())
+    //Middleware
+        app.use((req, res, next) => {
+            res.locals.success_msg = req.flash("success_msg")
+            res.locals.error_msg = req.flash("error_msg")
+            next()
+        })
+
     //Body Parser
         app.use(bodyParser.urlencoded({extended: true}))
         app.use(bodyParser.json())
@@ -33,13 +54,33 @@
     
     //Public
         app.use(express.static(path.join(__dirname,'public')))
-    
-    //Swapi
-        swapi.get('https://swapi.co/api/planets/2').then((result) => {
-            console.log(result);
-        })
-        //https://swapi.co/api/people/?search=r2
 
+        //Middlewares 
+        /*app.use((req, res, next) => {
+            console.log("Teste Middlewares ")
+            next()
+        })*/
+    
+            
+    //const swapi = require('swapi-node');
+
+    swapi.getPerson(1).then((result) => {
+        console.log(result.name)
+        //console.log(result);
+    })
+    
+    //Swapi    
+        //Ulisses
+        /*const teste = async(req, res) => {
+        const paapp = await axios.get('https://swapi.co/api/planets/2')
+        const result = paapp.data
+        return res.json(result)
+    }
+        teste()*/
+        //https://swapi.co/api/people/?search=r2  
+
+
+      
 //Rotas
     app.use('/admin', admin)
 //Outros
