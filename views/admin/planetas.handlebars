@@ -26,7 +26,7 @@
             <th scope="col">Clima</th>
             <th scope="col">Terreno</th>
             <th scope="col">Aparições</th>
-                   </tr>
+            </tr>
         
     </thead>
     {{#each planetas}}
@@ -36,7 +36,11 @@
                 <td>{{nome}}</td>
                 <td>{{clima}}</td>
                 <td>{{terreno}}</td>  
-                <td>{{aparicoes}}</td>         
+                <td>{{aparicoes}}</td> 
+                <td><form action="/admin/planetas/delete" method="POST">
+                    <input type="hidden" name="id" value="{{_id}}">
+                    <button type="submit" class="btn btn-danger">Excluir</button>
+                </form></td>     
             </tr>
         </tbody>
     {{/each}}

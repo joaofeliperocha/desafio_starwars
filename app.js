@@ -82,6 +82,10 @@
 
       
 //Rotas
+    app.get('/', (req, res) => {
+        res.render("index")
+    })
+
     app.use('/admin', admin)
 //Outros
 const PORT = 8081

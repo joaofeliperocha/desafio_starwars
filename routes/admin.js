@@ -76,4 +76,14 @@ router.get('/planetas/aparicoes/', (req, res) => {
     res.render("admin/aparicoes")
 })
 
+router.post("/planetas/delete", (req, res) => {
+    Planeta.remove({_id: req.body.id}).then(() => {
+        req.flash("success_msg", "Planeta excluído com sucesso")
+        res.redirect("/admin/planetas")
+    }).catch((err) => {
+        req.flash("error_msg", "Houve um erro ao excluir o planeta")
+        res.redirect("/admin/planetas")
+    })
+})
+
 module.exports = router
