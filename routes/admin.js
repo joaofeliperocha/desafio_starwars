@@ -2,7 +2,13 @@ const express = require('express')
 const router = express.Router()
 const mongoose = require("mongoose")
 require("../models/Planeta")
+//chamando o swapi
+//const aparicoes = require("../controllers/controller")
 const Planeta = mongoose.model("planetas")
+
+//Swapi
+const swapi = require('swapi-node')
+const fetch = require('node-fetch');
 
 router.get('/', (req, res) => {
     //res.send("Página principal")
@@ -24,7 +30,6 @@ router.get('/planetas/add', (req, res) => {
 router.post("/planetas/novo", (req, res) => {
 
     var erros = []
-
     if(!req.body.nome || typeof req.body.nome == undefined || req.body.nome == null){
         erros.push({texto: "Nome inválido"})
     }
@@ -37,24 +42,38 @@ router.post("/planetas/novo", (req, res) => {
         erros.push({texto: "Terreno inválido"})
     }
 
+    //Número de aparições em filmes
+    swapi.get('https://swapi.co/api/planets/?search=' + req.body.nome).then((result) => {
+        a(result.results[0].films.length)
+    })
+    const a = (param)=> {
+        console.log(param + " aparições em filmes")
+    }
+    
     if(erros.length > 0){
         res.render("admin/addplanetas", {erros: erros})
     }else{
         const novoPlaneta = {
             nome: req.body.nome,
             clima: req.body.clima,
-            terreno: req.body.terreno
-        }   
+            terreno: req.body.terreno,
+            aparicoes: req.body.aparicoes
+        }
+
         new Planeta(novoPlaneta).save().then(() => {
-            req.flash("success_msg", "Planeta adicionado com sucesso!")
+            req.flash("success_msg", "Planeta " + req.body.nome + " adicionado com sucesso!")
             //Redireciona para alguma página
             res.redirect("/admin/")
         }).catch((err) => {
             req.flash("error_msg", "Houve um erro ao adicionar o planeta, tente novamente!")
             //console.log("Erro ao salvar planeta!")
             res.redirect("/admin/")
-        })      
+        }) 
     }
+})
+
+router.get('/planetas/aparicoes/', (req, res) => {
+    res.render("admin/aparicoes")
 })
 
 module.exports = router

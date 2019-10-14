@@ -64,10 +64,10 @@
             
     //const swapi = require('swapi-node');
 
-    swapi.getPerson(1).then((result) => {
+    /*swapi.getPerson(2).then((result) => {
         console.log(result.name)
         //console.log(result);
-    })
+    })*/
     
     //Swapi    
         //Ulisses
