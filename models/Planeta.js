@@ -15,7 +15,7 @@ const Planeta = new Schema({
         required: true
     },
     aparicoes: {
-        type: String
+        type: Array
     }
 })
 mongoose.model("planetas", Planeta)

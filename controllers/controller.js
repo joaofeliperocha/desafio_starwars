@@ -1,3 +1,6 @@
+const mongoose = require('mongoose')
+
+const Planeta = mongoose.model("planetas")
 /*var XMLHttpRequest = require("xmlhttprequest").XMLHttpRequest;
 var req = new XMLHttpRequest();
 var j = 5
@@ -90,3 +93,18 @@ getPlanet().then(planet => {
     var a = planet.results[0].films.length
     console.log(a)
 })*/
+module.exports = { 
+    async adicionarNoBanco (req, res){
+    const {meuID} = req.params
+    const doAPI = await swapi.get(`https://swapi.co/api/planets/${meuID}`)
+    console.log(doAPI.data)
+
+    /*Planeta.create({
+        nome: doAPI.data.name,
+        clima: doAPI.data.climate,
+        terreno: doAPI.data.terrain,
+        aparicoes: doAPI.data.films.length() 
+    })*/
+    return res.json(doAPI)
+    }
+}

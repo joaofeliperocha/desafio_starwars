@@ -43,9 +43,10 @@ router.post("/planetas/novo", (req, res) => {
     }
 
     //Número de aparições em filmes
-    swapi.get('https://swapi.co/api/planets/?search=' + req.body.nome).then((result) => {
-        a(result.results[0].films.length)
-    })
+    
+    //swapi.get('https://swapi.co/api/planets/?search=' + req.body.nome).then((result) => {
+       // a(result.results[0].films.length)
+   // })
     const a = (param)=> {
         console.log(param + " aparições em filmes")
     }
@@ -85,5 +86,7 @@ router.post("/planetas/delete", (req, res) => {
         res.redirect("/admin/planetas")
     })
 })
+
+//busca por id
 
 module.exports = router

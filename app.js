@@ -18,6 +18,10 @@
     const session = require("express-session")
     const flash = require("connect-flash")
 
+    require("./models/Planeta")
+    const Planeta = mongoose.model("planetas")
+    const controller = require("./controllers/controller")
+
 //Configurações
 
     //Sessão
@@ -82,9 +86,58 @@
 
       
 //Rotas
+//Rota Home
     app.get('/', (req, res) => {
         res.render("index")
     })
+    app.get('/teste', controller.adicionarNoBanco)
+    //Teste - Busca pelo o nome
+    
+    /*app.get('/', (req, res) => {
+        Planeta.find().populate("planeta").then((planetas) => {
+            res.render("index", {planetas: planetas})
+        }).catch((err) => {
+            req.flash("error_msg", "Houve um erro interno")
+        })
+    })
+
+    app.get("/planets/busca/:nome", (req, res) => {
+        Planeta.findOne({nome: req.params.nome}).then((planeta) => {
+            if(planeta){
+                    res.render("planets/index", {planeta: planeta})
+               
+            }else{
+                req.flash("error_msg", "Este planeta não existe")
+                res.redirect("/")
+            }
+        }).catch((err) => {
+            req.flash("error_msg", "Houve um erro interno")
+            res.redirect("/")
+        })  
+    })*/
+
+    //Criando a rota para fazer a busca por nome
+    /*app.get("/planetas/:nome", (req, res) => {
+        Planeta.findOne({nome: req.params.nome}).then((planeta) => {
+            if(planeta){
+
+                Planeta.find({planeta: planeta._id}).then((planetas) => {
+                    res.render("planetas/busca", {planetas: planetas})
+
+                }).catch((err) => {
+                    req.flash("error_msg", "Houve um erro ao listar os planetas")
+                    res.redirect("/")
+                })
+                //res.render("planet/index", {planeta: planeta})
+            }else{
+                req.flash("error_msg", "Este planeta não existe")
+                res.redirect("/")
+            }
+        }).catch((err) => {
+            req.flash("error_msg", "Houve um erro interno")
+            res.redirect("/")
+        })       
+    })*/
 
     app.use('/admin', admin)
 //Outros
