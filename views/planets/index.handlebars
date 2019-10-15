@@ -1,9 +1,21 @@
-<h4>Planetas: </h4>
-<!--
-<hr>
-{{#each planetas}}
-    <a href="/planetas/{{nome}}"><h5>{{nome}}</h5></a>
-{{else}}
+<h2>Planeta(s) encontrado(s):</h2>
+<br>
+<br>
 
-{{/each}}
--->
+<table class="table table-dark">
+    <thead>
+        <tr>
+            <th scope="col">Planeta</th>
+            <th scope="col">Clima</th>
+            <th scope="col">Terreno</th>
+            </tr>        
+    </thead>    
+        <tbody>
+            <tr>          
+                <td>{{planeta.nome}}</td>
+                <td>{{planeta.clima}}</td>
+                <td>{{planeta.terreno}}</td>   
+            </tr>
+        </tbody>
+   
+</table>
