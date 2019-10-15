@@ -24,12 +24,12 @@
 </div>
 {{/each}}
 -->
-<h2>BUSCA</h2>
-<a href="/admin/planetas/aparicoes/"<button class="btn btn-success mt-4">Mostrar aparições</button></a>
+<h2>Pesquisar</h2>
 <hr>
 <table class="table table-dark">
     <thead>
         <tr>
+            <th scope="col">ID</th>
             <th scope="col">Planeta</th>
             <th scope="col">Clima</th>
             <th scope="col">Terreno</th>
@@ -39,12 +39,12 @@
     {{#each planetas}}
         <tbody>
             <tr>          
-                <!--<th scope="row">1</th>-->
+                <td>{{id}}</td>
                 <td>{{nome}}</td>
                 <td>{{clima}}</td>
                 <td>{{terreno}}</td>  
-                <td><a href="/planets/{{nome}}"><button type="submit" class="btn btn-success">Pesquisar</button></a></td>
- 
+                <td><a href="/planets/{{nome}}"><button  class="btn btn-warning">Pesquisar por nome</button></a></td>
+                <td><a href="/planets/id/{{id}}"><button  class="btn btn-warning">Pesquisar por ID</button></a></td>
             </tr>
         </tbody>
     {{/each}}

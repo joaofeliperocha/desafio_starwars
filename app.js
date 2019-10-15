@@ -60,13 +60,13 @@
         app.use(express.static(path.join(__dirname,'public')))
 //Rotas
 //Rota Home
-    /*app.get('/', (req, res) => {
-        res.render("index")
-    })*/
+    app.get('/home', (req, res) => {
+        //res.send("Teste")
+        res.render("planets/desafio")
+    })
 
-    app.get('/', (req, res) => {
+    app.get('/search', (req, res) => {
         Planeta.find().then((planetas) => {
-            //aqui eu passo os dados para o front
             res.render("index", {planetas: planetas})
         }).catch((err) => {
             req.flash("error_msg", "Houve um erro interno")
@@ -75,6 +75,21 @@
 
     app.get("/planets/:nome", (req, res) => {
         Planeta.findOne({nome: req.params.nome}).then((planeta) => {
+            if(planeta){
+                    res.render("planets/index", {planeta: planeta})
+               
+            }else{
+                req.flash("error_msg", "Este planeta não existe")
+                res.redirect("/")
+            }
+        }).catch((err) => {
+            req.flash("error_msg", "Houve um erro interno")
+            res.redirect("/")
+        })  
+    })
+
+    app.get("/planets/id/:id", (req, res) => {
+        Planeta.findById(req.params.id).then((planeta) => {
             if(planeta){
                     res.render("planets/index", {planeta: planeta})
                
