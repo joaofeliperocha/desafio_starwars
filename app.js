@@ -58,86 +58,12 @@
     
     //Public
         app.use(express.static(path.join(__dirname,'public')))
-
-        //Middlewares 
-        /*app.use((req, res, next) => {
-            console.log("Teste Middlewares ")
-            next()
-        })*/
-    
-            
-    //const swapi = require('swapi-node');
-
-    /*swapi.getPerson(2).then((result) => {
-        console.log(result.name)
-        //console.log(result);
-    })*/
-    
-    //Swapi    
-        //Ulisses
-        /*const teste = async(req, res) => {
-        const paapp = await axios.get('https://swapi.co/api/planets/2')
-        const result = paapp.data
-        return res.json(result)
-    }
-        teste()*/
-        //https://swapi.co/api/people/?search=r2  
-
-
-      
 //Rotas
 //Rota Home
     app.get('/', (req, res) => {
         res.render("index")
     })
-    app.get('/teste', controller.adicionarNoBanco)
-    //Teste - Busca pelo o nome
-    
-    /*app.get('/', (req, res) => {
-        Planeta.find().populate("planeta").then((planetas) => {
-            res.render("index", {planetas: planetas})
-        }).catch((err) => {
-            req.flash("error_msg", "Houve um erro interno")
-        })
-    })
-
-    app.get("/planets/busca/:nome", (req, res) => {
-        Planeta.findOne({nome: req.params.nome}).then((planeta) => {
-            if(planeta){
-                    res.render("planets/index", {planeta: planeta})
-               
-            }else{
-                req.flash("error_msg", "Este planeta não existe")
-                res.redirect("/")
-            }
-        }).catch((err) => {
-            req.flash("error_msg", "Houve um erro interno")
-            res.redirect("/")
-        })  
-    })*/
-
-    //Criando a rota para fazer a busca por nome
-    /*app.get("/planetas/:nome", (req, res) => {
-        Planeta.findOne({nome: req.params.nome}).then((planeta) => {
-            if(planeta){
-
-                Planeta.find({planeta: planeta._id}).then((planetas) => {
-                    res.render("planetas/busca", {planetas: planetas})
-
-                }).catch((err) => {
-                    req.flash("error_msg", "Houve um erro ao listar os planetas")
-                    res.redirect("/")
-                })
-                //res.render("planet/index", {planeta: planeta})
-            }else{
-                req.flash("error_msg", "Este planeta não existe")
-                res.redirect("/")
-            }
-        }).catch((err) => {
-            req.flash("error_msg", "Houve um erro interno")
-            res.redirect("/")
-        })       
-    })*/
+    //app.get('/teste', controller.adicionarNoBanco)
 
     app.use('/admin', admin)
 //Outros

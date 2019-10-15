@@ -1,3 +1,4 @@
+
 const mongoose = require('mongoose')
 
 const Planeta = mongoose.model("planetas")
@@ -93,6 +94,9 @@ getPlanet().then(planet => {
     var a = planet.results[0].films.length
     console.log(a)
 })*/
+
+//Mais atualizado
+/*
 module.exports = { 
     async adicionarNoBanco (req, res){
     const {meuID} = req.params
@@ -104,7 +108,7 @@ module.exports = {
         clima: doAPI.data.climate,
         terreno: doAPI.data.terrain,
         aparicoes: doAPI.data.films.length() 
-    })*/
+    })
     return res.json(doAPI)
     }
-}
+}*/
