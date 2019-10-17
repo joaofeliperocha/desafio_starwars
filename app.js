@@ -1,26 +1,20 @@
 //Arquivo principal
-//A API Swapi já está instalada
-//Também está instalado o axios - https://www.npmjs.com/package/axios
+
 //Carregando módulos    
     const express = require('express')
     const handlebars  = require('express-handlebars')
     const  bodyParser = require('body-parser')
     const mongoose = require('mongoose')
-
-    const swapi = require('swapi-node')
-    const axios = require('axios')
-
     const app = express()
     const admin = require('./routes/admin')
     const path = require('path')
 
-    //Ferramentas para ajudar na validação
+    //Ferramentas para ajudar na validação do formulário
     const session = require("express-session")
     const flash = require("connect-flash")
 
     require("./models/Planeta")
     const Planeta = mongoose.model("planetas")
-    const controller = require("./controllers/controller")
 
 //Configurações
 
@@ -60,8 +54,7 @@
         app.use(express.static(path.join(__dirname,'public')))
 //Rotas
 //Rota Home
-    app.get('/home', (req, res) => {
-        //res.send("Teste")
+    app.get('/', (req, res) => {
         res.render("planets/desafio")
     })
 
@@ -72,7 +65,7 @@
             req.flash("error_msg", "Houve um erro interno")
         })
     })
-
+    //Busca por nome
     app.get("/planets/:nome", (req, res) => {
         Planeta.findOne({nome: req.params.nome}).then((planeta) => {
             if(planeta){
@@ -87,7 +80,7 @@
             res.redirect("/")
         })  
     })
-
+    //Busca por ID
     app.get("/planets/id/:id", (req, res) => {
         Planeta.findById(req.params.id).then((planeta) => {
             if(planeta){
@@ -102,11 +95,8 @@
             res.redirect("/")
         })  
     })
-
-    //app.get('/teste', controller.adicionarNoBanco)
-
     app.use('/admin', admin)
-//Outros
+
 const PORT = 8081
 app.listen(PORT, () => {
     console.log("Servidor rodando! ")

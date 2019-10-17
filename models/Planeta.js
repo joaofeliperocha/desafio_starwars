@@ -13,9 +13,6 @@ const Planeta = new Schema({
     terreno: {
         type: String,
         required: true
-    },
-    aparicoes: {
-        type: Array
     }
 })
 mongoose.model("planetas", Planeta)

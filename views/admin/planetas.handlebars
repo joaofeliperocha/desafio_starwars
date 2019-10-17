@@ -1,6 +1,5 @@
 <!--Listagem dos planetas com opção de remover-->
 <h2>Lista de planetas</h2>
-<a href="/admin/planetas/aparicoes/"<button class="btn btn-success mt-4">Mostrar aparições</button></a>
 <hr>
 <table class="table table-dark">
     <thead>
@@ -8,18 +7,17 @@
             <th scope="col">Planeta</th>
             <th scope="col">Clima</th>
             <th scope="col">Terreno</th>
-            <th scope="col">Aparições</th>
+            <!--<th scope="col">Aparições</th>-->
             </tr>
         
     </thead>
     {{#each planetas}}
         <tbody>
             <tr>          
-                <!--<th scope="row">1</th>-->
                 <td>{{nome}}</td>
                 <td>{{clima}}</td>
                 <td>{{terreno}}</td>  
-                <td>{{aparicoes}}</td> 
+                <!--<td>{{aparicoes}}</td>-->
                 <td><form action="/admin/planetas/delete" method="POST">
                     <input type="hidden" name="id" value="{{_id}}">
                     <button type="submit" class="btn btn-danger">Excluir</button>
