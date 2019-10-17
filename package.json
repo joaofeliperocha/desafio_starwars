@@ -1,0 +1,30 @@
+{
+  "name": "desafio_starwars",
+  "version": "1.0.0",
+  "description": "Desafio Star Wars para a empresa Iblue Consulting",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/joaofeliperocha/desafio_starwars.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/joaofeliperocha/desafio_starwars/issues"
+  },
+  "homepage": "https://github.com/joaofeliperocha/desafio_starwars#readme",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "connect-flash": "^0.1.1",
+    "express": "^4.17.1",
+    "express-handlebars": "^3.1.0",
+    "express-session": "^1.17.0",
+    "mongoose": "^5.7.5",
+    "swapi-node": "^0.4.4"
+  }
+}
