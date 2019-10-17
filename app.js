@@ -67,7 +67,7 @@ app.get("/", (req, res) => {
   res.render("planets/desafio");
 });
 
-app.get("/search", (req, res) => {
+app.get("/busca", (req, res) => {
   Planeta.find()
     .then(planetas => {
       res.render("index", { planetas: planetas });
@@ -77,7 +77,7 @@ app.get("/search", (req, res) => {
     });
 });
 //Busca por nome
-app.get("/planets/:nome", (req, res) => {
+app.get("/busca/:nome", (req, res) => {
   Planeta.findOne({ nome: req.params.nome })
     .then(planeta => {
       if (planeta) {
@@ -93,7 +93,7 @@ app.get("/planets/:nome", (req, res) => {
     });
 });
 //Busca por ID
-app.get("/planets/id/:id", (req, res) => {
+app.get("/busca/id/:id", (req, res) => {
   Planeta.findById(req.params.id)
     .then(planeta => {
       if (planeta) {

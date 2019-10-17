@@ -5,16 +5,15 @@
         <tr>
             <th scope="col">ID</th>
             <th scope="col">Planeta</th>
-            </tr>
-        
+            </tr>       
     </thead>
     {{#each planetas}}
         <tbody>
             <tr>          
                 <td>{{id}}</td>
                 <td>{{nome}}</td>
-                <td><a href="/planets/{{nome}}"><button  class="btn btn-warning">Pesquisar por nome</button></a></td>
-                <td><a href="/planets/id/{{id}}"><button  class="btn btn-warning">Pesquisar por ID</button></a></td>
+                <td><a href="/busca/{{nome}}"><button  class="btn btn-warning">Pesquisar por nome</button></a></td>
+                <td><a href="/busca/id/{{id}}"><button  class="btn btn-warning">Pesquisar por ID</button></a></td>
             </tr>
         </tbody>
     {{/each}}
