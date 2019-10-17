@@ -54,14 +54,24 @@ router.post("/planetas/novo", (req, res) => {
     erros.push({ texto: "Terreno inválido" });
   }
 
-  swapi.get("https://swapi.co/api/planets/?search=" + nome).then(result => {
-    Planeta.create({
-      nome,
-      clima,
-      terreno,
-      aparicoes: result.results[0].films.length
+  swapi
+    .get("https://swapi.co/api/planets/?search=" + nome)
+    .then(result => {
+      Planeta.create({
+        nome,
+        clima,
+        terreno,
+        aparicoes: result.results[0].films.length
+      });
+    })
+    .catch(() => {
+      Planeta.create({
+        nome,
+        clima,
+        terreno,
+        aparicoes: 0
+      });
     });
-  });
 
   return res.redirect("/");
 });
