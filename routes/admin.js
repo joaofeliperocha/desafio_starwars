@@ -11,6 +11,7 @@ const swapi = require("swapi-node");
 router.get("/", (req, res) => {
   res.render("admin/index");
 });
+
 //Listar planetas
 router.get("/planetas", (req, res) => {
   Planeta.find()
@@ -25,9 +26,10 @@ router.get("/planetas", (req, res) => {
 router.get("/planetas/add", (req, res) => {
   res.render("admin/addplanetas");
 });
-//Adicionar planeta CORRIGIDO
+//Adicionar planeta - ajuda do Ulisses
 router.post("/planetas/novo", (req, res) => {
   const { nome, clima, terreno } = req.body;
+
   //Verificando se existe algum campo vazio
   var erros = [];
   if (
@@ -53,27 +55,31 @@ router.post("/planetas/novo", (req, res) => {
   ) {
     erros.push({ texto: "Terreno inválido" });
   }
-
-  swapi
-    .get("https://swapi.co/api/planets/?search=" + nome)
-    .then(result => {
-      Planeta.create({
-        nome,
-        clima,
-        terreno,
-        aparicoes: result.results[0].films.length
+  
+  if(erros.length > 0){
+    res.render("admin/addplanetas", {erros: erros})
+  //Chamando a API SWAPI para salvar no banco o número de aparições
+  }else{
+    swapi.get("https://swapi.co/api/planets/?search=" + nome).then(result => {
+        Planeta.create({
+          nome,
+          clima,
+          terreno,
+          aparicoes: result.results[0].films.length
+        }) 
+      })
+      .catch(() => {
+        Planeta.create({
+          nome,
+          clima,
+          terreno,
+          aparicoes: 0
+        });
       });
-    })
-    .catch(() => {
-      Planeta.create({
-        nome,
-        clima,
-        terreno,
-        aparicoes: 0
-      });
-    });
+    req.flash("success_msg", "Planeta " + req.body.nome + " adicionado com sucesso!")
+    return res.redirect("/");
+  }
 
-  return res.redirect("/");
 });
 //Remover planeta
 router.post("/planetas/delete", (req, res) => {

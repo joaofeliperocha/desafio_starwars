@@ -1,4 +1,4 @@
-<!--Listagem dos planetas com opção de remover-->
+<!--Listagem dos planetas com opção de excluir-->
 <h2>Lista de planetas</h2>
 <hr>
 <table class="table table-dark">
@@ -7,9 +7,8 @@
             <th scope="col">Planeta</th>
             <th scope="col">Clima</th>
             <th scope="col">Terreno</th>
-            <!--<th scope="col">Aparições</th>-->
-            </tr>
-        
+            <th scope="col">Aparições</th>
+            </tr>       
     </thead>
     {{#each planetas}}
         <tbody>
@@ -17,7 +16,7 @@
                 <td>{{nome}}</td>
                 <td>{{clima}}</td>
                 <td>{{terreno}}</td>  
-                <!--<td>{{aparicoes}}</td>-->
+                <td>{{aparicoes}}</td>
                 <td><form action="/admin/planetas/delete" method="POST">
                     <input type="hidden" name="id" value="{{_id}}">
                     <button type="submit" class="btn btn-danger">Excluir</button>
