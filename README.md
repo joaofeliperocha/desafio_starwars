@@ -1,22 +1,25 @@
-# desafio_starwars
-Desafio Star Wars para a empresa Iblue Consulting
+# Desafio Star Wars - Iblue Consulting
 
-NodeJS
-MongoDB: https://www.mongodb.com/download-center/community
-Mudar as variáveis de ambiente do windows - PATH - C:\Program Files\MongoDB\Server\4.2\bin
-criar no disco local C a pasta data e dentro da pasta data criar a pasta db
-abrir o cmd e digitar: mongod
+Resumidamente deseja-se criar uma API com as seguintes funcionalidades:
+- Adicionar planeta
+- Remover planeta
+- Listar planetas
+- Buscar por nome e ID
+- Para cada planeta mostrar o números de aparições em filmes, utlizando a API SWAPI
 
-Express: npm install express --save
-Handlebars: npm i express-handlebars
-nodemon: npm install nodemon -g
-body-parser: npm install --save body-parser
-Mongoose: npm install --save mongoose
-Session: npm install --save express-session
-Swapi: npm install --save swapi-node
-Axios: npm i axios
-connect-flash: npm i connect-flash
-node-fetch: npm install node-fetch --save
+# Tecnologias utilizadas:
 
-npm install --save request
-npm install --save request-promise
+### Back-end
+- Node.js
+- MongoDB
+
+### Front-end
+- Bootstrap
+- Handlebars
+
+# Execução do projeto:
+É necessário ter o Node.js instalado em seu computador. Assim basta clonar este repositório, entrar na pasta desafio_starwars e executar o seguinte comando para instalar todas as bibliotecas: **npm install**, posteriormente execute o comando: **npm start** para rodar a aplicação.
+
+Para iniciar essa aplicação acesse: http://localhost:8081/
+Entre na pasta desafio_star e execute o comando: npm install
+E depois npm start, assim a aplicação já está rodando
