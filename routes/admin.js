@@ -23,11 +23,11 @@ router.get("/planetas", (req, res) => {
       res.render("/admin");
     });
 });
-router.get("/planetas/add", (req, res) => {
+router.get("/planeta", (req, res) => {
   res.render("admin/addplanetas");
 });
 //Adicionar planeta - ajuda do Ulisses
-router.post("/planetas/novo", (req, res) => {
+router.post("/planeta/novo", (req, res) => {
   const { nome, clima, terreno } = req.body;
 
   //Verificando se existe algum campo vazio
