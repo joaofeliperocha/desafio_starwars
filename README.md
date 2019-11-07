@@ -1,4 +1,4 @@
-# Desafio Star Wars - Iblue Consulting
+# Desafio Star Wars
 
 Resumidamente deseja-se criar uma API com as seguintes funcionalidades:
 - Adicionar planeta
